@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIToolkit/USS/InfoPanel.uss?fileID=7433441132597879392&amp;guid=1704b62302cab164786328f443edc3da&amp;type=3#InfoPanel" />
+    <FlappyTest.UI.InfoPanel style="width: 175px; height: 50px; background-color: rgba(106, 101, 101, 0.52); padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; position: absolute; left: 0; top: 0;">
+        <ui:VisualElement name="TimeInGameContainer" class="container-label">
+            <ui:Label text="Время в игре:" display-tooltip-when-elided="true" class="info-panel-label" />
+            <ui:Label display-tooltip-when-elided="true" name="TimeInGame" class="info-panel-label" />
+        </ui:VisualElement>
+        <ui:VisualElement name="DifficultyContainer" class="container-label">
+            <ui:Label text="Сложность:" display-tooltip-when-elided="true" class="info-panel-label" />
+            <ui:Label display-tooltip-when-elided="true" name="Difficulty" class="info-panel-label" />
+        </ui:VisualElement>
+    </FlappyTest.UI.InfoPanel>
+</ui:UXML>

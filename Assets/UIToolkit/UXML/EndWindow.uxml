@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIToolkit/USS/Main.uss?fileID=7433441132597879392&amp;guid=fa56e7084bdb9cb4ea6f08df5b6f1020&amp;type=3#Main" />
+    <FlappyTest.UI.EndWindow class="window">
+        <ui:Label text="Игра окончена" display-tooltip-when-elided="true" name="TestName" class="window-label" />
+        <ui:Button text="Попробовать снова" display-tooltip-when-elided="true" name="RetartGameBtn" class="window-actionbtn" />
+    </FlappyTest.UI.EndWindow>
+</ui:UXML>

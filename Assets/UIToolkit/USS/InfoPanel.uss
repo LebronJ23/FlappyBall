@@ -1,0 +1,12 @@
+.container-label {
+    flex-direction: row;
+    height: 25px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.info-panel-label {
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-center;
+    color: rgba(255, 230, 230, 255);
+}

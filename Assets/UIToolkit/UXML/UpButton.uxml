@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIToolkit/USS/Main.uss?fileID=7433441132597879392&amp;guid=fa56e7084bdb9cb4ea6f08df5b6f1020&amp;type=3#Main" />
+    <FlappyTest.UI.UpButton style="right: 0; bottom: 0; flex-direction: row-reverse; position: absolute;">
+        <ui:Button text="Up" display-tooltip-when-elided="true" name="UpBtn" class="up-button" style="font-size: 23px; color: rgba(0, 0, 0, 255);" />
+    </FlappyTest.UI.UpButton>
+</ui:UXML>
