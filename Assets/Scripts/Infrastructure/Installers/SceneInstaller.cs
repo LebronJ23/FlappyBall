@@ -27,6 +27,9 @@ namespace FlappyTest.Installers
 		[SerializeField]
 		private BallController _ballConroller;
 
+		[SerializeField]
+		private GameHandler _gameHandler;
+
 		public override void InstallBindings()
 		{
 			BindObjects();
@@ -40,8 +43,13 @@ namespace FlappyTest.Installers
 
 		private void BindObjects()
 		{
+			Container.BindInstance(_gameHandler).AsSingle().NonLazy();
 			Container.Bind<GameDifficultyController>().FromComponentInNewPrefab(_gameDifficultyController).AsSingle().NonLazy();
-			Container.Bind<BallController>().FromComponentInNewPrefab(_ballConroller).AsSingle().NonLazy();
+			Container.Bind<BallController>()
+				.FromComponentInNewPrefab(_ballConroller)
+				//.UnderTransform(_gameHandler.transform)
+				.AsSingle()
+				.NonLazy();
 
 			Container.BindInstance(_startWindowController).AsSingle();
 			Container.BindInstance(_endWindowController).AsSingle();

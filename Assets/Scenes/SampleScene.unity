@@ -1330,6 +1330,7 @@ MonoBehaviour:
     type: 3}
   _ballConroller: {fileID: 5926999380531189866, guid: 25fdccc43e947a34a92809e818cb3dce,
     type: 3}
+  _gameHandler: {fileID: 0}
 --- !u!1 &1255150898
 GameObject:
   m_ObjectHideFlags: 0

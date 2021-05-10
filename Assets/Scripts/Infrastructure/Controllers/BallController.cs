@@ -1,3 +1,4 @@
+using FlappyTest.Installers;
 using FlappyTest.Services;
 using UnityEngine;
 using Zenject;
@@ -11,6 +12,9 @@ namespace FlappyTest.Controllers
 
 		private GameStateService _gameStateService;
 		private GameDifficultyController _gameDifficultyController;
+		private Confiiguration _confiiguration;
+		private GameHandler _gameHandler;
+
 		private float _speed = 0.01f;
 
 		public float _speedKoef { get; private set; }
@@ -18,13 +22,18 @@ namespace FlappyTest.Controllers
 		[Inject]
 		private void Construct(
 			GameStateService gameStateService,
-			GameDifficultyController gameDifficultyController
+			GameDifficultyController gameDifficultyController,
+			Confiiguration confiiguration,
+			GameHandler gameHandler
 			)
 		{
 			_gameStateService = gameStateService;
 			_gameDifficultyController = gameDifficultyController;
+			_confiiguration = confiiguration;
+			_gameHandler = gameHandler;
 
 			_gameDifficultyController.DifficultyChanged += ChangeDifficulty;
+			_speed = _confiiguration.StartBallSpeed;
 		}
 
 		private void ChangeDifficulty(float difficulty)
@@ -43,11 +52,12 @@ namespace FlappyTest.Controllers
 		private void ValidateMove()
 		{
 			transform.position += _speed * _speedKoef * (_defaultMoving + _additiveMoving);
+			_gameHandler.transform.position += _speed * _speedKoef * _defaultMoving;
 		}
 
-		public void ChangeAdditionalDirection(bool isMouseDown)
+		public void ChangeAdditionalDirection(bool isDown)
 		{
-			_additiveMoving = isMouseDown ? Vector3.up : Vector3.down;
+			_additiveMoving = isDown ? Vector3.up : Vector3.down;
 		}
 
 		private void OnTriggerEnter2D(Collider2D collision)

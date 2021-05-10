@@ -6,7 +6,11 @@ namespace FlappyTest.Installers
 	public class Confiiguration
 	{
 		[Tooltip("¬рем€ до изменени€ уровн€ сложности (в секундах)")]
-		[Range(0.001f, 100)]
+		[Range(1f, 100)]
 		public float SecondsToNextDiffiiculty;
+
+		[Tooltip("Ќачальна€ скорость движени€ шара")]
+		[Range(0.01f, 100)]
+		public float StartBallSpeed;
 	}
 }
