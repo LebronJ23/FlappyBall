@@ -1,5 +1,6 @@
 using System;
 using FlappyTest.Controllers;
+using FlappyTest.Pooling;
 using FlappyTest.Services;
 using FlappyTest.UI.Controllers;
 using UnityEngine;
@@ -30,6 +31,15 @@ namespace FlappyTest.Installers
 		[SerializeField]
 		private GameHandler _gameHandler;
 
+		[SerializeField]
+		private ObjectPool _objectPool;
+
+		[SerializeField]
+		private CapsuleSpawner _capsuleSpawner;
+
+		//[SerializeField]
+		//private ObjectPool _objectPool;
+
 		public override void InstallBindings()
 		{
 			BindObjects();
@@ -44,6 +54,8 @@ namespace FlappyTest.Installers
 		private void BindObjects()
 		{
 			Container.BindInstance(_gameHandler).AsSingle().NonLazy();
+			Container.BindInstance(_objectPool).AsSingle().NonLazy();
+			Container.BindInstance(_capsuleSpawner).AsSingle().NonLazy();
 			Container.Bind<GameDifficultyController>().FromComponentInNewPrefab(_gameDifficultyController).AsSingle().NonLazy();
 			Container.Bind<BallController>()
 				.FromComponentInNewPrefab(_ballConroller)
