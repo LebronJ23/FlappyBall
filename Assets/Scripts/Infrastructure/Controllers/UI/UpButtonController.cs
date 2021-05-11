@@ -26,16 +26,29 @@ namespace FlappyTest.UI.Controllers
 			_gameStateService.StateChanged += ChangedGameState;
 		}
 
-		private void ChangedGameState(GameStateEnum obj)
+		private void ChangedGameState(GameStateEnum state)
 		{
-			if (_gameStateService.IsRunning())
+			switch (state)
 			{
-				_upButton.Show();
+				case GameStateEnum.Running:
+					_upButton.Show();
+					break;
+				case GameStateEnum.Restart:
+					_upButton.Reset();
+					break;
+				case GameStateEnum.Stop:
+					_upButton.Hide();
+					break;
 			}
-			else
-			{
-				_upButton.Hide();
-			}
+
+			//if (_gameStateService.IsRunning())
+			//{
+			//	_upButton.Show();
+			//}
+			//else
+			//{
+			//	_upButton.Hide();
+			//}
 		}
 
 		private void Awake()

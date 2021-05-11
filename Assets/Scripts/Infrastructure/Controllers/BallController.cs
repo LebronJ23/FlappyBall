@@ -1,3 +1,5 @@
+using System;
+using FlappyTest.Enums;
 using FlappyTest.Installers;
 using FlappyTest.Services;
 using UnityEngine;
@@ -32,8 +34,18 @@ namespace FlappyTest.Controllers
 			_confiiguration = confiiguration;
 			_gameHandler = gameHandler;
 
+			_gameStateService.StateChanged += GameStateCanged;
 			_gameDifficultyController.DifficultyChanged += ChangeDifficulty;
 			_speed = _confiiguration.StartBallSpeed;
+			transform.position = _gameHandler._startPosition;
+		}
+
+		private void GameStateCanged(GameStateEnum state)
+		{
+			if (state == GameStateEnum.Restart)
+			{
+				RestartGame();
+			}
 		}
 
 		private void ChangeDifficulty(float difficulty)
@@ -53,6 +65,12 @@ namespace FlappyTest.Controllers
 		{
 			transform.position += _speed * _speedKoef * (_defaultMoving + _additiveMoving);
 			_gameHandler.transform.position += _speed * _speedKoef * _defaultMoving;
+		}
+
+		private void RestartGame()
+		{
+			transform.position = _gameHandler._startPosition;
+			_additiveMoving = Vector3.down;
 		}
 
 		public void ChangeAdditionalDirection(bool isDown)

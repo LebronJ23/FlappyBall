@@ -35,6 +35,12 @@ namespace FlappyTest.UI
 			_ballController.ChangeAdditionalDirection(_isUp);
 		}
 
+		public void Reset()
+		{
+			_isUp = false;
+			_upButton.text = "Up";
+		}
+
 		//private void GoDown(MouseDownEvent evt)
 		//{
 		//	_ballController.ChangeAdditionalDirection(true);

@@ -29,6 +29,7 @@ namespace FlappyTest.UI
 		{
 			//TODO: вызов пеерезапуска игры
 			_gameStateService.ChangeGameState(Enums.GameStateEnum.Restart);
+			_gameStateService.ChangeGameState(Enums.GameStateEnum.Running);
 		}
 	}
 }

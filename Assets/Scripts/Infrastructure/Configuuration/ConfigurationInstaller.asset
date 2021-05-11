@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _config:
     SecondsToNextDiffiiculty: 2
-    StartBallSpeed: 0.01
+    StartBallSpeed: 0.5
