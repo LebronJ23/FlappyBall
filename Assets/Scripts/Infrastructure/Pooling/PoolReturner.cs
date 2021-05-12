@@ -1,5 +1,7 @@
 using FlappyTest.Controllers;
+using FlappyTest.Enums;
 using FlappyTest.Services;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -17,6 +19,19 @@ namespace FlappyTest.Pooling
 			_pool = pool;
 			_gameHandler = gameHandler;
 			_gameStateService = gameStateService;
+			_gameStateService.StateChanged += GameStateChanged;
+		}
+
+		private void GameStateChanged(GameStateEnum state)
+		{
+			if (state == GameStateEnum.Stop)
+			{
+				if (this != null)
+				{
+					Destroy(this.gameObject);
+
+				}
+			}
 		}
 
 		private void Update()
@@ -30,10 +45,10 @@ namespace FlappyTest.Pooling
 			}
 		}
 
-		private void OnDisable()
-		{
-			Return();
-		}
+		//private void OnDisable()
+		//{
+		//	Return();
+		//}
 
 		private void Return()
 		{

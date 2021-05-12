@@ -1,4 +1,8 @@
+using FlappyTest.Enums;
+using FlappyTest.Services;
+using System;
 using System.Collections.Generic;
+using UnityEngine;
 using Zenject;
 
 namespace FlappyTest.Pooling
@@ -7,11 +11,30 @@ namespace FlappyTest.Pooling
 	{
 		private Dictionary<string, Queue<T>> _pool = new Dictionary<string, Queue<T>>();
 		private PoolReturner.Factory _factory;
+		private GameStateService _gameStateService;
 
 		[Inject]
-		public void Construct(PoolReturner.Factory factory)
+		public void Construct(PoolReturner.Factory factory, GameStateService gameStateService)
 		{
 			_factory = factory;
+			_gameStateService = gameStateService;
+
+			_gameStateService.StateChanged += GameStateChanged;
+		}
+
+		private void GameStateChanged(GameStateEnum state)
+		{
+			if (state == GameStateEnum.Stop)
+			{
+				foreach (var queue in _pool)
+				{
+					foreach (var obj in queue.Value)
+					{
+						GameObject.Destroy(obj);
+					}
+				}
+				_pool.Clear();
+			}
 		}
 
 		public T Get(T gameObject)

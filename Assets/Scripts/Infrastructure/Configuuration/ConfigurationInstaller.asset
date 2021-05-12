@@ -15,4 +15,4 @@ MonoBehaviour:
   _config:
     SecondsToNextDiffiiculty: 2
     StartBallSpeed: 0.5
-    StartSpawnTime: 5
+    StartSpawnTime: 0.48
