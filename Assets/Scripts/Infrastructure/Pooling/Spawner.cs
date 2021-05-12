@@ -11,10 +11,10 @@ namespace FlappyTest.Pooling
 	public class Spawner : MonoBehaviour
 	{
 		private float _lastSpawnTime;
-		private ObjectPool _pool;
+		private ObjectPool<PoolReturner> _pool;
 
 		[SerializeField]
-		private GameObject _spawnedPref;
+		private PoolReturner _spawnedPref;
 
 		private float _defaultSpawnTime;
 
@@ -29,7 +29,7 @@ namespace FlappyTest.Pooling
 			Confiiguration confiiguration,
 			GameStateService gameStateService,
 			GameDifficultyController gameDifficultyController,
-			ObjectPool pool)
+			ObjectPool<PoolReturner> pool)
 		{
 			_confiiguration = confiiguration;
 			_gameDifficultyController = gameDifficultyController;
@@ -56,8 +56,8 @@ namespace FlappyTest.Pooling
 
 				if (_lastSpawnTime >= _defaultSpawnTime)
 				{
-					GameObject spawnObject = _pool.Get(_spawnedPref);
-					spawnObject.transform.position = this.transform.position + new Vector3(0, UnityEngine.Random.Range(0, MAX_CAMERA_RANGE), 0);
+					PoolReturner spawnObject = _pool.Get(_spawnedPref);
+					spawnObject.gameObject.transform.position = this.transform.position - new Vector3(0, UnityEngine.Random.Range(0, MAX_CAMERA_RANGE), 0);
 					_lastSpawnTime = 0f;
 				}
 			}

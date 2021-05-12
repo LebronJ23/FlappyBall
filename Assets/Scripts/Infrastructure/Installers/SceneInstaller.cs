@@ -31,14 +31,14 @@ namespace FlappyTest.Installers
 		[SerializeField]
 		private GameHandler _gameHandler;
 
-		[SerializeField]
-		private ObjectPool _objectPool;
+		//[SerializeField]
+		//private ObjectPool<PoolReturner> _objectPool;
 
 		[SerializeField]
 		private CapsuleSpawner _capsuleSpawner;
 
-		//[SerializeField]
-		//private ObjectPool _objectPool;
+		[SerializeField]
+		private PoolReturner _poolReturner;
 
 		public override void InstallBindings()
 		{
@@ -54,8 +54,11 @@ namespace FlappyTest.Installers
 		private void BindObjects()
 		{
 			Container.BindInstance(_gameHandler).AsSingle().NonLazy();
-			Container.BindInstance(_objectPool).AsSingle().NonLazy();
+
+			Container.BindFactory<PoolReturner, PoolReturner.Factory>().FromComponentInNewPrefab(_poolReturner);
+			Container.Bind<ObjectPool<PoolReturner>>().AsSingle();
 			Container.BindInstance(_capsuleSpawner).AsSingle().NonLazy();
+
 			Container.Bind<GameDifficultyController>().FromComponentInNewPrefab(_gameDifficultyController).AsSingle().NonLazy();
 			Container.Bind<BallController>()
 				.FromComponentInNewPrefab(_ballConroller)

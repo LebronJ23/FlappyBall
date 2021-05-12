@@ -7,12 +7,12 @@ namespace FlappyTest.Pooling
 {
 	public class PoolReturner : MonoBehaviour
 	{
-		private ObjectPool _pool;
+		private ObjectPool<PoolReturner> _pool;
 		private GameHandler _gameHandler;
 		private GameStateService _gameStateService;
 
 		[Inject]
-		public void Construct(ObjectPool pool, GameHandler gameHandler, GameStateService gameStateService)
+		public void Construct(ObjectPool<PoolReturner> pool, GameHandler gameHandler, GameStateService gameStateService)
 		{
 			_pool = pool;
 			_gameHandler = gameHandler;
@@ -23,9 +23,9 @@ namespace FlappyTest.Pooling
 		{
 			if (_gameStateService.IsRunning())
 			{
-				if (this.transform.position.x < _gameHandler.transform.position.x)
+				if (this.transform.position.x < _gameHandler.transform.position.x - 50f)
 				{
-					Destroy(this);
+					Return();
 				}
 			}
 		}
@@ -37,7 +37,12 @@ namespace FlappyTest.Pooling
 
 		private void Return()
 		{
-			_pool?.Return(gameObject);
+			_pool?.Return(this);
+		}
+
+		public class Factory : PlaceholderFactory<PoolReturner>
+		{
+
 		}
 	}
 }
